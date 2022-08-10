@@ -43,7 +43,7 @@ export default function ImageFinderApp() {
     <div>
       <Searchbar onSubmit={handleSubmit} />
       <ImageGallery images={images} modalOpener={toggleModal} />
-      {(images.length > 0) & !showLoader && <Button onLoad={handleLoadMore} />}
+      {images.length > 0 && !showLoader && <Button onLoad={handleLoadMore} />}
       {showLoader && <Loader color="#457b9d" height={300} width={300} />}
 
       {showModal && (

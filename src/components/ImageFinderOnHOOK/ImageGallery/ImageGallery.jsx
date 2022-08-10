@@ -2,7 +2,6 @@ import React from 'react';
 import css from './ImageGallery.module.css';
 import ImageGalleryItem from '../ImageGalleryItem';
 export default function ImageGallery({ images, modalOpener }) {
-  console.log(images);
   if (!images) {
     return null;
   }
