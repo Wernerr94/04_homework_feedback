@@ -12,8 +12,7 @@ export default function PhonebookApp() {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ]);
   const [filter, setFilter] = useState('');
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
     if (localStorage.contacts == !'') {
