@@ -21,7 +21,7 @@ export default function Modal({ onClose, children }) {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, []);
+  }, [handleKeyDown]);
 
   return createPortal(
     <div className={css.overlay} onClick={handleClosing}>
