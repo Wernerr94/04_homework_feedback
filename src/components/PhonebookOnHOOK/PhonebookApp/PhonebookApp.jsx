@@ -15,7 +15,7 @@ export default function PhonebookApp() {
 
   useEffect(() => {
     localStorage.setItem('contacts', JSON.stringify(contacts));
-    if (localStorage.contacts == !'') {
+    if (localStorage.contacts !== '') {
       const contactsArr = JSON.parse(localStorage.getItem('contacts'));
       console.log(contactsArr);
       if (contactsArr) {
