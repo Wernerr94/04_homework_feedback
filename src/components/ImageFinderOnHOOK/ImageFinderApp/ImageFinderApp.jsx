@@ -11,6 +11,7 @@ import imageAPI from '../services/pixabay-api';
 export default function ImageFinderApp() {
   const [value, setValue] = useState('');
   const [images, setImages] = useState([]);
+  const [totalImages, setTotalImages] = useState(0);
   const [pickedImage, setPickedImage] = useState(null);
   const [pages, setPages] = useState(1);
   const [showLoader, setShowLoader] = useState(false);
@@ -24,6 +25,7 @@ export default function ImageFinderApp() {
   };
   const handleSubmit = value => {
     setValue(value);
+    setPages(1);
   };
 
   useEffect(() => {
@@ -34,7 +36,10 @@ export default function ImageFinderApp() {
     setTimeout(() => {
       imageAPI
         .getImages(value, pages)
-        .then(res => setImages(prevState => [...prevState, ...res]))
+        .then(res => {
+          setImages(prevState => [...prevState, ...res.hits]);
+          setTotalImages(res.total);
+        })
         .finally(() => setShowLoader(false));
     }, 200);
   }, [value, pages]);
@@ -43,7 +48,9 @@ export default function ImageFinderApp() {
     <div>
       <Searchbar onSubmit={handleSubmit} />
       <ImageGallery images={images} modalOpener={toggleModal} />
-      {images.length > 0 && !showLoader && <Button onLoad={handleLoadMore} />}
+      {images.length !== totalImages && !showLoader && (
+        <Button onLoad={handleLoadMore} />
+      )}
       {showLoader && <Loader color="#457b9d" height={300} width={300} />}
 
       {showModal && (

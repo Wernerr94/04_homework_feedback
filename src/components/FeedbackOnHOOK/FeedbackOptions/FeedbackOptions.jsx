@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from './FeedbackOptions.styled';
+import { Button, Options } from './FeedbackOptions.styled';
 
 export default function FeedbackOptions({ onLeaveFeedback, options }) {
   return (
-    <>
+    <Options>
       {Object.keys(options).map(el => (
         <Button
           key={el}
@@ -13,7 +13,7 @@ export default function FeedbackOptions({ onLeaveFeedback, options }) {
           {el}
         </Button>
       ))}
-    </>
+    </Options>
   );
 }
 

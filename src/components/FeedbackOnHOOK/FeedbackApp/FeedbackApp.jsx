@@ -22,14 +22,15 @@ export default function FeedbackApp() {
     neutral: 0,
     bad: 0,
   });
-
-  const countTotalFeedback = (x, y, z) => {
-    return x + y + z;
-  };
-  const countPositiveFeedbackPercentage = (x, y, z) => {
-    return ((x / (x + y + z)) * 100).toFixed(0);
-  };
-
+  const { good, bad, neutral } = state;
+  function countTotalFeedback() {
+    return good + bad + neutral;
+  }
+  function countPositiveFeedbackPercentage() {
+    return ((good / (good + bad + neutral)) * 100).toFixed(0);
+  }
+  const total = countTotalFeedback();
+  const percentage = countPositiveFeedbackPercentage();
   return (
     <div>
       <div>
@@ -39,12 +40,8 @@ export default function FeedbackApp() {
             good={state.good}
             neutral={state.neutral}
             bad={state.bad}
-            total={countTotalFeedback(state.good, state.neutral, state.bad)}
-            positivePercentage={countPositiveFeedbackPercentage(
-              state.good,
-              state.neutral,
-              state.bad
-            )}
+            total={total}
+            positivePercentage={percentage}
           />
         </Section>
       </div>

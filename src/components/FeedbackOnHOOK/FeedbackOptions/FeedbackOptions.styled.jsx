@@ -1,5 +1,8 @@
 import styled from '@emotion/styled';
 
+export const Options = styled.div`
+  display: flex;
+`;
 export const Button = styled.button`
   background-color: #eff1f3;
   border-radius: 5px;
